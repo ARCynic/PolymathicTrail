@@ -119,7 +119,7 @@ export default function About() {
       <div className="relative z-10 mx-auto max-w-6xl space-y-8 pt-2 pb-12">
         <header className="space-y-2">
           <h1 className="text-3xl font-semibold tracking-tight text-white">
-            About this Site and the Owner.
+            About ARCynic & Polymathic Trail
           </h1>
         </header>
 
@@ -130,15 +130,36 @@ export default function About() {
           <div className="flex items-start justify-between gap-6">
             <div>
               <h2 className="text-lg font-semibold text-white">
-                About this site
+                About ARCynic
               </h2>
             </div>
             <Tag className="bg-white/5 text-white/80">ᯓ★</Tag>
           </div>
           <div className="mt-3 space-y-3 text-white/75">
+<p>
+              “ARCynic” is an autodidact who prefers to learn by taking key ideas apart and rebuilding them, examining both the technical mechanisms and the human dynamics involved.
+            </p>
             <p>
-              This site is a working notebook. It sits somewhere between a lab,
-              a library, and a rehearsal room. It brings together independent
+              
+His work grows out of long-term close observation—sometimes from inside systems, sometimes from outside them, often in solitude. His background includes science, programming, self-directed research, and years of practical teaching: tutoring students, experimenting with AI tools, building small simulations, and exploring how music, language, and emotion interact.
+            </p>
+            <p>
+              His projects often involve cross-domain synthesis, moving between technical systems and human behavior. Some focus on translating long-term observations into models and concrete implementations.
+
+Other projects remain open-ended. These include a self-directed approach to learning multiple instruments through melody, rhythm, and groove, along with short written fragments that grow out of sustained observation and imagination.
+            </p>
+          </div>
+          <br></br>
+          <h2 className="text-lg font-semibold text-white">About Polymathic Trail</h2>
+          <div className="mt-3 space-y-3 text-white/75">
+            
+            
+            
+            <p>
+              This site makes ARCynic’s observations public, so other self-directed learners can reason with them, test them, or borrow whatever perspectives they find useful.
+            </p>
+                        <p>
+              The site can be read as a working notebook, a lab, a library—or maybe a rehearsal room. It brings together independent
               research, simulations, code experiments, music sketches,
               language-learning ideas, and short philosophical pieces around a
               shared question:
@@ -148,42 +169,9 @@ export default function About() {
               The focus is on feedback-driven systems: humans, organisations, AI
               models, education systems. The domains differ, but the recurring
               issues are similar—load, regulation, drift, failure, and recovery.
-              The aim here is to collect those recurring structures and turn
-              them into something usable: conceptual frameworks, interactive
-              tools, and small, concrete examples.
+              The aim is to collect those recurring structures and turn them into something usable: conceptual frameworks, interactive tools, and small, concrete examples.
             </p>
-          </div>
-          <br></br>
-          <h2 className="text-lg font-semibold text-white">About ARCynic</h2>
-          <div className="mt-3 space-y-3 text-white/75">
-            <p>
-              I tend to learn by taking systems apart and then trying to rebuild
-              them—from both the technical side and the human side.
-            </p>
-            <p>
-              My background is a mix of maths, programming, self-directed
-              research, and years of practical teaching: tutoring students,
-              experimenting with AI tools, building small simulations, and
-              exploring how music, language, and cognition interact. Most of
-              what I do cuts across domains on purpose. I’m less interested in
-              staying within one discipline than in tracking patterns that
-              repeat.
-            </p>
-            <p>
-              This site is a way to make that process visible. Some projects are
-              closer to formal research (for example, the dynamic-equilibrium
-              framework and coupled-agent simulations). Others are more
-              exploratory (music-as-regulation sketches, short fables, or
-              satirical pieces about institutions). Together they trace how
-              ideas move from intuition, to sketch, to model, to implementation.
-            </p>
-            <p>
-              If you find anything here useful—as a researcher, developer,
-              teacher, musician, or just a curious reader—you’re welcome to
-              borrow it, adapt it, or build on it. The material will change over
-              time as projects evolve; it’s intended to remain in motion rather
-              than finished.
-            </p>
+            <p>If something here sparked your interest—whether to learn more, contribute, or collaborate—reach out via the Contact section.</p>
           </div>
         </Card>
 
@@ -191,17 +179,18 @@ export default function About() {
           className="bg-black/30 text-white backdrop-blur"
           borderColor="rgba(70, 182, 247, 0)"
         >
-          <h2 className="text-lg font-semibold text-white">Creative Domains</h2>
-          <div className="mt-3 flex flex-wrap gap-2">
+          <h2 className="text-3xl font-semibold text-white">Research & Practice</h2>
+          <div className="p-2 mt-3 flex flex-wrap gap-2">
             {[
               "Systems Architecture",
-              "AI & Tooling",
-              "Teaching / writing",
               "Cybernetics",
+              "AI & Tooling",
+              "Teaching & Writing",
+
               "Music & Art",
               "Games & Simulation",
             ].map((t) => (
-              <Tag key={t} className="bg-white/5 text-white/80">
+              <Tag key={t} className="bg-white/5 text-white/80 text-base md:text-lg">
                 {t}
               </Tag>
             ))}
