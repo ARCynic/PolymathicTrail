@@ -1,0 +1,30 @@
+
+@import "tailwindcss";
+
+/* Small global tweaks for readability */
+:root {
+  color-scheme: dark;
+}
+
+::selection {
+  background: rgba(34, 211, 238, 0.25); /* cyan-ish */
+}
+
+.prose p {
+  margin-top: 1rem;
+  line-height: 1.5;
+}
+
+@keyframes splitReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 rgba(0,0,0,0); }
+  50% { opacity: .95; box-shadow: 0 0 15px rgba(255,255,255,0.05); }
+}
+.animate-pulse-slow {
+  animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
