@@ -65,15 +65,7 @@ export const RESEARCH_SNEAKPEEK = [
     tags: ["myth", "truth", "analytics"],
     height: 520,
   },
-  {
-    id: "r_ai_tooling",
-    variant: "text",
-    title: "AI as a Tool, not a Trick",
-    summary:
-      "Designing AI features that are inspectable, reversible, and respectful—no dark patterns, no mysticism.",
-    tags: ["ai", "tools", "ethics"],
-    height: 560,
-  },
+
 ];
 
 /** @type {SneakpeekItem[]} */
