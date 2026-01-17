@@ -15,7 +15,7 @@ export default function Footer() {
           {/* Right */}
           <div className="flex items-center gap-3">
   <SocialIcon
-    href="#"
+    href="https://github.com/ARCynic"
     label="GitHub"
     icon={
       <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-hidden="true">
