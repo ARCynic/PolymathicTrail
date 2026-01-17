@@ -12,7 +12,7 @@ export default function About() {
 
   // ✅ Formspree endpoint (REPLACE with your real form id)
   const FORMSPREE_ENDPOINT = useMemo(
-    () => "https://formspree.io/f/YOUR_FORMSPREE_ID",
+    () => "",
     []
   );
 
@@ -22,6 +22,7 @@ export default function About() {
   const [status, setStatus] = useState(null); // { type: "success"|"error", text: string }
   const [isSending, setIsSending] = useState(false);
   const CHROME_OPACITY = 0.25;
+  
   useEffect(() => {
     if (!status) return;
     const t = setTimeout(() => setStatus(null), 5000);
@@ -136,29 +137,23 @@ export default function About() {
             <Tag className="bg-white/5 text-white/80">ᯓ★</Tag>
           </div>
           <div className="mt-3 space-y-3 text-white/75">
-<p>
+            <p>
               “ARCynic” is an autodidact who prefers to learn by taking key ideas apart and rebuilding them, examining both the technical mechanisms and the human dynamics involved.
             </p>
             <p>
-              
-His work grows out of long-term close observation—sometimes from inside systems, sometimes from outside them, often in solitude. His background includes science, programming, self-directed research, and years of practical teaching: tutoring students, experimenting with AI tools, building small simulations, and exploring how music, language, and emotion interact.
+              His work grows out of long-term close observation—sometimes from inside systems, sometimes from outside them, often in solitude. His background includes science, programming, self-directed research, and years of practical teaching: tutoring students, experimenting with AI tools, building small simulations, and exploring how music, language, and emotion interact.
             </p>
             <p>
-              His projects often involve cross-domain synthesis, moving between technical systems and human behavior. Some focus on translating long-term observations into models and concrete implementations.
-
-Other projects remain open-ended. These include a self-directed approach to learning multiple instruments through melody, rhythm, and groove, along with short written fragments that grow out of sustained observation and imagination.
+              His projects often involve cross-domain synthesis, moving between technical systems and human behavior. Some focus on translating long-term observations into models and concrete implementations. Other projects remain open-ended. These include a self-directed approach to learning multiple instruments through melody, rhythm, and groove, along with short written fragments that grow out of sustained observation and imagination.
             </p>
           </div>
           <br></br>
           <h2 className="text-lg font-semibold text-white">About Polymathic Trail</h2>
           <div className="mt-3 space-y-3 text-white/75">
-            
-            
-            
             <p>
               This site makes ARCynic’s observations public, so other self-directed learners can reason with them, test them, or borrow whatever perspectives they find useful.
             </p>
-                        <p>
+            <p>
               The site can be read as a working notebook, a lab, a library—or maybe a rehearsal room. It brings together independent
               research, simulations, code experiments, music sketches,
               language-learning ideas, and short philosophical pieces around a
@@ -171,7 +166,15 @@ Other projects remain open-ended. These include a self-directed approach to lear
               issues are similar—load, regulation, drift, failure, and recovery.
               The aim is to collect those recurring structures and turn them into something usable: conceptual frameworks, interactive tools, and small, concrete examples.
             </p>
-            <p>If something here sparked your interest—whether to learn more, contribute, or collaborate—reach out via the Contact section.</p>
+            <p>
+              If something here sparks your interest or overlaps with questions you’re already working through—whether to learn more, contribute, or collaborate—reach out via the{' '}
+              <a 
+                href="#contact" 
+                className="text-cyan-400 hover:text-cyan-300 transition-colors hover:underline decoration-cyan-300/50 underline-offset-4"
+              >
+                Contact form
+              </a>.
+            </p>
           </div>
         </Card>
 
@@ -186,7 +189,6 @@ Other projects remain open-ended. These include a self-directed approach to lear
               "Cybernetics",
               "AI & Tooling",
               "Teaching & Writing",
-
               "Music & Art",
               "Games & Simulation",
             ].map((t) => (
@@ -201,10 +203,10 @@ Other projects remain open-ended. These include a self-directed approach to lear
           className="bg-black/30 text-white backdrop-blur"
           borderColor="rgba(70, 182, 247, 0)"
         >
-          <h2 className="text-lg font-semibold text-white">Now / Next</h2>
+          <h2 className="text-2xl font-semibold text-white">Now / Next</h2>
           <div className="mt-3 grid gap-6 sm:grid-cols-2">
             <div>
-              <p className="text-sm font-semibold text-white/90">Now</p>
+              <p className="text-xl font-semibold text-white/90">Now</p>
               <ul className="mt-2 list-inside list-disc space-y-1 text-sm text-white/70">
                 <li>Protoyping Journey Chords- A tour planner for Bands.</li>
                 <li>Writing short creative essays.</li>
@@ -212,7 +214,7 @@ Other projects remain open-ended. These include a self-directed approach to lear
               </ul>
             </div>
             <div>
-              <p className="text-sm font-semibold text-white/90">Next</p>
+              <p className="text-xl font-semibold text-white/90">Next</p>
               <ul className="mt-2 list-inside list-disc space-y-1 text-sm text-white/70">
                 <li>Formalising Architechture of Regulation using DELS.</li>
                 <li>Multi Agent System Implementation.</li>
@@ -222,7 +224,8 @@ Other projects remain open-ended. These include a self-directed approach to lear
           </div>
         </Card>
 
-        <header className="space-y-2">
+        {/* Added ID here for the link to scroll to */}
+        <header id="contact" className="space-y-2 scroll-mt-24">
           <h1 className="text-3xl font-semibold tracking-tight text-white">
             Contact
           </h1>
@@ -233,7 +236,7 @@ Other projects remain open-ended. These include a self-directed approach to lear
           <div className="flex items-start justify-between gap-6">
             <div>
               <h2 className="text-lg font-semibold text-white">
-                Feedback, questions, collaborations—send a note.
+                You can use this form if you’re working on related projects, stuck on a systems / cognition / learning problem, or just want a perspective on something in this space—whether it’s feedback, questions, collaborations, or simply to send a note.
               </h2>
             </div>
             <Tag className="bg-white/5 text-white/80">📝</Tag>
