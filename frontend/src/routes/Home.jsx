@@ -73,11 +73,11 @@ useEffect(() => {
             <div className="grid gap-7 lg:grid-cols-[1.2fr_0.8fr]">
               <div className="space-y-8 pl-4 sm:pl-8 py-2">
                 <p className="max-w-2xl text-balance leading-relaxed text-white/75 sm:text-xl">
-                  Polymathictrail is a personal lab for exploring philosophy, cognition, art, and music through independent research, simulations, and creative practice in AI, education, and sound.
+                  Polymathic Trail is a personal lab for exploring philosophy, cognition, art, and music through independent research, simulations, and creative practice in AI, education, and sound.
                 </p>
 
                 <div className="flex flex-wrap justify-left gap-8">
-                  <ActionLink to="/map">Learn More</ActionLink>
+                  <ActionLink to="/about">Learn More</ActionLink>
                 </div>
               </div>
 
