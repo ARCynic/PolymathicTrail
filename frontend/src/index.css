@@ -5,7 +5,11 @@
 :root {
   color-scheme: dark;
 }
-
+/* index.css or App.css */
+body {
+  overflow-x: hidden;
+  width: 100%;
+}
 ::selection {
   background: rgba(34, 211, 238, 0.25); /* cyan-ish */
 }

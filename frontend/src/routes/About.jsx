@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import LiquidChrome from "../components/effects/LiquidChrome.jsx";
 import Card from "../components/UI/Card.jsx";
@@ -10,19 +10,13 @@ export default function About() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  // ✅ Formspree endpoint (REPLACE with your real form id)
-  const FORMSPREE_ENDPOINT = useMemo(
-    () => "",
-    []
-  );
-
   const canSend = message.trim().length >= 10;
 
   // ✅ inline status message (auto hides after 5s)
   const [status, setStatus] = useState(null); // { type: "success"|"error", text: string }
   const [isSending, setIsSending] = useState(false);
   const CHROME_OPACITY = 0.25;
-  
+
   useEffect(() => {
     if (!status) return;
     const t = setTimeout(() => setStatus(null), 5000);
@@ -37,46 +31,42 @@ export default function About() {
     const safeName = name.trim() || "Anonymous";
     const safeEmail = email.trim() || "";
 
-    // Formspree: send fields + optional subject
+    // ✅ Keep collecting feedback fields (placeholder payload)
     const payload = {
       topic: safeTopic,
       name: safeName,
       email: safeEmail,
       message: message.trim(),
-      _subject: `[SimSea] ${safeTopic} — ${safeName}`,
+      createdAt: new Date().toISOString(),
     };
 
     try {
       setIsSending(true);
       setStatus(null);
 
-      const res = await fetch(FORMSPREE_ENDPOINT, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(payload),
+      // 🚧 Placeholder: backend submission will go here later.
+      // Example (COMMENTED OUT):
+      //
+      // const res = await fetch("/api/contact", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify(payload),
+      // });
+      // if (!res.ok) throw new Error("Request failed");
+
+      // For now: pretend we "accepted" it locally (no saving, no network).
+      // console.log("Feedback (not sent / not saved):", payload);
+
+      setStatus({
+        type: "success",
+        text: "Feedback captured (not sent yet).",
       });
 
-      if (!res.ok) {
-        let errText = "There was an issue sending your feedback.";
-        try {
-          const data = await res.json();
-          if (data?.errors?.[0]?.message) errText = data.errors[0].message;
-        } catch {
-          // ignore json parse errors
-        }
-        setStatus({ type: "error", text: errText });
-        return;
-      }
-
-      setStatus({ type: "success", text: "Your feedback is sent." });
       setMessage(""); // keep topic/name/email intact
     } catch {
       setStatus({
         type: "error",
-        text: "There was an issue sending your feedback.",
+        text: "There was an issue capturing your feedback.",
       });
     } finally {
       setIsSending(false);
@@ -86,11 +76,9 @@ export default function About() {
   return (
     <div className="relative isolate min-h-screen">
       {/* Fullscreen Ether background (About only) */}
-      <div
-        className="pointer-events-none fixed inset-0 z-0"
-        aria-hidden="true"
-      >
-        <div style={{
+      <div className="pointer-events-none fixed inset-0 z-0" aria-hidden="true">
+        <div
+          style={{
             position: "relative",
             width: "100%",
             height: "100%",
@@ -124,64 +112,76 @@ export default function About() {
           </h1>
         </header>
 
-        <Card
-          className="bg-black/30 text-white backdrop-blur"
-          borderColor="#46b6f7"
-        >
+        <Card className="bg-black/30 text-white backdrop-blur" borderColor="#46b6f7">
           <div className="flex items-start justify-between gap-6">
             <div>
-              <h2 className="text-lg font-semibold text-white">
-                About ARCynic
-              </h2>
+              <h2 className="text-lg font-semibold text-white">About ARCynic</h2>
             </div>
             <Tag className="bg-white/5 text-white/80">ᯓ★</Tag>
           </div>
           <div className="mt-3 space-y-3 text-white/75">
             <p>
-              “ARCynic” is an autodidact who prefers to learn by taking key ideas apart and rebuilding them, examining both the technical mechanisms and the human dynamics involved.
+              “ARCynic” is an autodidact who prefers to learn by taking key ideas
+              apart and rebuilding them, examining both the technical mechanisms
+              and the human dynamics involved.
             </p>
             <p>
-              His work grows out of long-term close observation—sometimes from inside systems, sometimes from outside them, often in solitude. His background includes science, programming, self-directed research, and years of practical teaching: tutoring students, experimenting with AI tools, building small simulations, and exploring how music, language, and emotion interact.
+              His work grows out of long-term close observation—sometimes from
+              inside systems, sometimes from outside them, often in solitude. His
+              background includes science, programming, self-directed research,
+              and years of practical teaching: tutoring students, experimenting
+              with AI tools, building small simulations, and exploring how music,
+              language, and emotion interact.
             </p>
             <p>
-              His projects often involve cross-domain synthesis, moving between technical systems and human behavior. Some focus on translating long-term observations into models and concrete implementations. Other projects remain open-ended. These include a self-directed approach to learning multiple instruments through melody, rhythm, and groove, along with short written fragments that grow out of sustained observation and imagination.
+              His projects often involve cross-domain synthesis, moving between
+              technical systems and human behavior. Some focus on translating
+              long-term observations into models and concrete implementations.
+              Other projects remain open-ended. These include a self-directed
+              approach to learning multiple instruments through melody, rhythm,
+              and groove, along with short written fragments that grow out of
+              sustained observation and imagination.
             </p>
           </div>
           <br></br>
           <h2 className="text-lg font-semibold text-white">About Polymathic Trail</h2>
           <div className="mt-3 space-y-3 text-white/75">
             <p>
-              This site makes ARCynic’s observations public, so other self-directed learners can reason with them, test them, or borrow whatever perspectives they find useful.
+              This site makes ARCynic’s observations public, so other
+              self-directed learners can reason with them, test them, or borrow
+              whatever perspectives they find useful.
             </p>
             <p>
-              The site can be read as a working notebook, a lab, a library—or maybe a rehearsal room. It brings together independent
-              research, simulations, code experiments, music sketches,
-              language-learning ideas, and short philosophical pieces around a
-              shared question:
+              The site can be read as a working notebook, a lab, a library—or
+              maybe a rehearsal room. It brings together independent research,
+              simulations, code experiments, music sketches, language-learning
+              ideas, and short philosophical pieces around a shared question:
             </p>
             <p>How do complex systems learn, adapt, and break?</p>
             <p>
               The focus is on feedback-driven systems: humans, organisations, AI
               models, education systems. The domains differ, but the recurring
               issues are similar—load, regulation, drift, failure, and recovery.
-              The aim is to collect those recurring structures and turn them into something usable: conceptual frameworks, interactive tools, and small, concrete examples.
+              The aim is to collect those recurring structures and turn them into
+              something usable: conceptual frameworks, interactive tools, and
+              small, concrete examples.
             </p>
             <p>
-              If something here sparks your interest or overlaps with questions you’re already working through—whether to learn more, contribute, or collaborate—reach out via the{' '}
-              <a 
-                href="#contact" 
+              If something here sparks your interest or overlaps with questions
+              you’re already working through—whether to learn more, contribute,
+              or collaborate—reach out via the{" "}
+              <a
+                href="#contact"
                 className="text-cyan-400 hover:text-cyan-300 transition-colors hover:underline decoration-cyan-300/50 underline-offset-4"
               >
                 Contact form
-              </a>.
+              </a>
+              .
             </p>
           </div>
         </Card>
 
-        <Card
-          className="bg-black/30 text-white backdrop-blur"
-          borderColor="rgba(70, 182, 247, 0)"
-        >
+        <Card className="bg-black/30 text-white backdrop-blur" borderColor="rgba(70, 182, 247, 0)">
           <h2 className="text-3xl font-semibold text-white">Research & Practice</h2>
           <div className="p-2 mt-3 flex flex-wrap gap-2">
             {[
@@ -199,10 +199,7 @@ export default function About() {
           </div>
         </Card>
 
-        <Card
-          className="bg-black/30 text-white backdrop-blur"
-          borderColor="rgba(70, 182, 247, 0)"
-        >
+        <Card className="bg-black/30 text-white backdrop-blur" borderColor="rgba(70, 182, 247, 0)">
           <h2 className="text-2xl font-semibold text-white">Now / Next</h2>
           <div className="mt-3 grid gap-6 sm:grid-cols-2">
             <div>
@@ -226,10 +223,7 @@ export default function About() {
 
         {/* Added ID here for the link to scroll to */}
         <header id="contact" className="flex space-y-2 scroll-mt-24">
-          <h1 className="text-3xl font-semibold tracking-tight text-white">
-            Contact
-          </h1>
-          
+          <h1 className="text-3xl font-semibold tracking-tight text-white">Contact</h1>
         </header>
 
         {/* CONTACT */}
@@ -237,10 +231,12 @@ export default function About() {
           <div className="flex items-start justify-between gap-6">
             <div>
               <h2 className="text-lg font-semibold text-white">
-                You can use this form if you’re working on related projects, stuck on a systems / cognition / learning problem, or just want a perspective on something in this space—whether it’s feedback, questions, collaborations, or simply to send a note.
+                You can use this form if you’re working on related projects, stuck on
+                a systems / cognition / learning problem, or just want a perspective
+                on something in this space—whether it’s feedback, questions,
+                collaborations, or simply to send a note.
               </h2>
             </div>
-            
           </div>
 
           <form onSubmit={handleSubmit} className="mt-6 grid gap-4">
@@ -298,9 +294,7 @@ export default function About() {
                 className="min-h-[120px] rounded-xl bg-black/40 p-4 text-white/85 ring-1 ring-white/10 outline-none focus:ring-white/20"
                 placeholder="Write your message…"
               />
-              <p className="text-xs text-white/50">
-                (Minimum 10 characters.)
-              </p>
+              <p className="text-xs text-white/50">(Minimum 10 characters.)</p>
             </div>
 
             {/* ✅ status card (auto hides after 5 seconds) */}
@@ -319,9 +313,7 @@ export default function About() {
 
             <div className="flex items-center justify-between gap-4">
               <p className="text-xs text-white/50">
-                {isSending
-                  ? "Sending…"
-                  : "Sends via Formspree (no redirect)."}
+                {isSending ? "Sending…" : "Submission is currently disabled."}
               </p>
 
               <button
@@ -331,9 +323,7 @@ export default function About() {
                   "h-11 rounded-xl px-5 text-sm font-semibold",
                   "bg-white/10 text-white/85 ring-1 ring-white/10",
                   "hover:bg-white/15 hover:ring-white/20 transition",
-                  !canSend || isSending
-                    ? "opacity-50 cursor-not-allowed"
-                    : "",
+                  !canSend || isSending ? "opacity-50 cursor-not-allowed" : "",
                 ].join(" ")}
               >
                 {isSending ? "Sending" : "Send"}

@@ -42,10 +42,10 @@ useEffect(() => {
   return (
     <header className="relative">
       {/* Spacer so content doesn't hide under absolute navbar */}
-      <div className="h-16 sm:h-34" aria-hidden="true" />
+      {/* <div className="h-16 sm:h-34" aria-hidden="true" /> */}
 
       {/* Navbar band */}
-      <div className="absolute left-0 right-0 top-4 z-50">
+      <div className="relative z-50 pt-4">
         <nav className="flex w-full items-center justify-between px-4 sm:px-8">
           {/* LEFT: brand */}
           <div className="flex items-center gap-4">
@@ -125,29 +125,19 @@ useEffect(() => {
         </nav>
 
         {/* Mobile popover */}
-        <div
-          className={cx(
-            "md:hidden mx-auto mt-3 max-w-6xl px-4 sm:px-6",
-            "transition",
-            mobileOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2 pointer-events-none"
-          )}
-        >
-          <div
-            className={cx(
-              "rounded-3xl p-2",
-              "bg-black/70 ring-1 ring-white/10 backdrop-blur",
-              "shadow-[0_16px_60px_rgba(0,0,0,0.55)]"
-            )}
-          >
-            <ul className="flex flex-col gap-2">
-              {items.map((item) => (
-                <li key={`m-${item.to ?? item.href ?? item.label}`}>
-                  <MobileLink item={item} styles={styles} />
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        {mobileOpen ? (
+  <div className="md:hidden mx-auto mt-3 max-w-6xl px-4 sm:px-6">
+    <div className="rounded-3xl p-2 bg-black/70 ring-1 ring-white/10 backdrop-blur shadow-[0_16px_60px_rgba(0,0,0,0.55)]">
+      <ul className="flex flex-col gap-2">
+        {items.map((item) => (
+          <li key={`m-${item.to ?? item.href ?? item.label}`}>
+            <MobileLink item={item} styles={styles} />
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+) : null}
       </div>
     </header>
   );

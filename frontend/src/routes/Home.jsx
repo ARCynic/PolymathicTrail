@@ -18,6 +18,12 @@ export default function Home() {
   const [quoteIdx, setQuoteIdx] = useState(() =>
   QUOTES.length ? Math.floor(Math.random() * QUOTES.length) : 0
 );
+const [showOrient, setShowOrient] = useState(true);
+
+useEffect(() => {
+  const t = setTimeout(() => setShowOrient(false), 10000);
+  return () => clearTimeout(t);
+}, []);
 const CHROME_OPACITY = 0.35;
 useEffect(() => {
   if (!QUOTES?.length) return;
@@ -27,7 +33,7 @@ useEffect(() => {
   return () => clearInterval(id);
 }, []);
   return (
-    <div className="relative min-h-screen -mt-0 sm:-mt-0">
+    <div className="relative min-h-screen -mt-0 sm:-mt-0 ">
       {/* Fullscreen Ether (Home only) - unchanged */}
       <div
         style={{
@@ -64,9 +70,44 @@ useEffect(() => {
           }}
         />
       </div>
+{showOrient ? (
+  <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+    {/* backdrop */}
+    <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
 
+    {/* box */}
+    <div className="relative w-full max-w-xl">
+      <Card className="p-0" borderColor="rgba(0,229,255,0.55)">
+        <div className="flex items-start justify-between gap-4 p-5 border-b border-white/10">
+          <div>
+            <h3 className="text-lg font-semibold text-white/90">Welcome to Polymathic Trail</h3>
+            <p className="mt-1 text-sm text-white/60">
+              A quick map to get you oriented.
+            </p>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setShowOrient(false)}
+            className="shrink-0 rounded-xl bg-white/10 px-3 py-2 text-xs font-bold uppercase tracking-[0.22em] text-white/80 hover:bg-white/12 hover:text-white ring-2 ring-white/10 hover:ring-white/60 transition"
+            aria-label="Close"
+          >
+            Close
+          </button>
+        </div>
+
+        <div className="p-5 text-sm text-white/75 space-y-3">
+          <p><span className="text-white/90 font-semibold">Start:</span> Hit <span className="text-cyan-200/90 font-semibold">Learn More</span> for the why + context.</p>
+          <p><span className="text-white/90 font-semibold">Research:</span> Open a sneak peek to read a short overview.</p>
+          <p><span className="text-white/90 font-semibold">Creative:</span> Browse projects and experiments.</p>
+          <p className="text-white/55 text-xs">This will close automatically in 10 seconds.</p>
+        </div>
+      </Card>
+    </div>
+  </div>
+) : null}
       {/* Content */}
-      <div className="relative z-10 grid gap-1 lg:grid-cols-[1fr_1px]">
+      <div className="relative z-10">
         <div className="space-y-2">
           {/* Intro + Quote (same panel) */}
           <Card className="p-2" borderColor="#1f1a17ff">
@@ -117,9 +158,9 @@ useEffect(() => {
         </div>
 
         {/* Right rail (unchanged) */}
-        <aside className="hidden lg:block">
+        {/* <aside className="hidden lg:block">
           <div className="sticky top-24 min-h-[100svh] rounded-3xl bg-white/2" />
-        </aside>
+        </aside> */}
       </div>
     </div>
   );
