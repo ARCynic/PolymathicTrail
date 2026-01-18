@@ -25,7 +25,7 @@ export const RESEARCH_SNEAKPEEK = [
   variant: "text",
   title: "The Architecture of Regulation (DELS)",
   summary:
-    "DELS is a practical lens for understanding how living, learning, or organized systems maintain key state variables within viable bounds despite fluctuating load and limited regulatory capacity.",
+    "DELS is a practical lens for understanding how living, learning, or organized systems maintain feedback regulation despite fluctuating load and limited recovery capacity.",
   tags: [
     "DELS",
     "Systems-Thinking",

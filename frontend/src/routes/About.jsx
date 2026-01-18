@@ -55,7 +55,7 @@ export default function About() {
       // if (!res.ok) throw new Error("Request failed");
 
       // For now: pretend we "accepted" it locally (no saving, no network).
-      // console.log("Feedback (not sent / not saved):", payload);
+      console.log("Feedback (not sent / not saved):", payload);
 
       setStatus({
         type: "success",
@@ -72,7 +72,7 @@ export default function About() {
       setIsSending(false);
     }
   };
-
+const isMobile = window.matchMedia?.("(max-width: 640px)")?.matches;
   return (
     <div className="relative isolate min-h-screen">
       {/* Fullscreen Ether background (About only) */}
@@ -85,12 +85,17 @@ export default function About() {
             opacity: CHROME_OPACITY,
           }}
         >
-          <LiquidChrome
-            baseColor={[0.0, 0.01, 0.01]}
-            speed={0.1}
-            amplitude={0.3}
-            interactive={true}
-          />
+  {!isMobile && (
+  <LiquidChrome
+              baseColor={[0.0, 0.01, 0.01]}
+              speed={0.1}
+              amplitude={0.3}
+              interactive={false}
+            />
+)}
+{isMobile && (
+  <div className="absolute inset-0 bg-black" /> // or a static gradient/image
+)}
 
           {/* Readability overlay */}
           <div

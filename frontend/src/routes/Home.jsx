@@ -19,7 +19,7 @@ export default function Home() {
   QUOTES.length ? Math.floor(Math.random() * QUOTES.length) : 0
 );
 const [showOrient, setShowOrient] = useState(true);
-
+const isMobile = window.matchMedia?.("(max-width: 640px)")?.matches;
 useEffect(() => {
   const t = setTimeout(() => setShowOrient(false), 10000);
   return () => clearTimeout(t);
@@ -53,12 +53,17 @@ useEffect(() => {
     opacity: CHROME_OPACITY,
   }}
 >
+  {!isMobile && (
   <LiquidChrome
-    baseColor={[0.0, 0.01, 0.01]}
-    speed={0.1}
-    amplitude={0.3}
-    interactive={true}
-  />
+              baseColor={[0.0, 0.01, 0.01]}
+              speed={0.1}
+              amplitude={0.3}
+              interactive={false}
+            />
+)}
+{isMobile && (
+  <div className="absolute inset-0 bg-black" /> // or a static gradient/image
+)}
 </div>
 
         <div
@@ -78,12 +83,9 @@ useEffect(() => {
     {/* box */}
     <div className="relative w-full max-w-xl">
       <Card className="p-0" borderColor="rgba(0,229,255,0.55)">
-        <div className="flex items-start justify-between gap-4 p-5 border-b border-white/10">
-          <div>
-            <h3 className="text-lg font-semibold text-white/90">Welcome to Polymathic Trail</h3>
-            <p className="mt-1 text-sm text-white/60">
-              A quick map to get you oriented.
-            </p>
+        <div className="flex items-start justify-between gap-4 p-2 border-b border-white/10">
+          <div className="flex flex-inline">
+            <h3 className="text-xl font-semibold text-white/90">Welcome to Polymathic Trail ..•°જ⁀➴</h3>
           </div>
 
           <button
@@ -97,9 +99,8 @@ useEffect(() => {
         </div>
 
         <div className="p-5 text-sm text-white/75 space-y-3">
-          <p><span className="text-white/90 font-semibold">Start:</span> Hit <span className="text-cyan-200/90 font-semibold">Learn More</span> for the why + context.</p>
-          <p><span className="text-white/90 font-semibold">Research:</span> Open a sneak peek to read a short overview.</p>
-          <p><span className="text-white/90 font-semibold">Creative:</span> Browse projects and experiments.</p>
+          <p><span className="text-white/90 font-semibold">This site is currently under active construction. Details, tools, simulations would be published and uploaded continually on regular basis. </span>Nonetheless, you are welcome to explore some satirical, philosophical or learning fragments in <span className="text-cyan-200/90 font-semibold">Cognitive Forest!</span></p>
+          
           <p className="text-white/55 text-xs">This will close automatically in 10 seconds.</p>
         </div>
       </Card>
