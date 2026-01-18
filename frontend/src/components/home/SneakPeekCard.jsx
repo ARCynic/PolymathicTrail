@@ -179,7 +179,7 @@ export default function SneakPeekCard({
             <div className="flex h-full flex-col justify-center p-6 sm:p-7">
               <h3
                 className={cx(
-                  "text-2xl sm:text-[28px] font-semibold tracking-tight",
+                  "text-2xl sm:text-[24px] font-semibold tracking-tight",
                   "text-white transition-colors duration-300",
                   "group-hover/sneak:text-cyan-200"
                 )}

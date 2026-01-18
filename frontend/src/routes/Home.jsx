@@ -33,8 +33,8 @@ useEffect(() => {
         style={{
           position: "fixed",
           inset: 0,
-          width: "100vw",
-          height: "100vh",
+          // width: "100vw",
+          // height: "100vh",
           zIndex: 0
         }}
         aria-hidden="true"
@@ -118,7 +118,7 @@ useEffect(() => {
 
         {/* Right rail (unchanged) */}
         <aside className="hidden lg:block">
-          <div className="sticky top-24 h-[calc(100vh-2rem)] rounded-3xl bg-white/2" />
+          <div className="sticky top-24 min-h-[100svh] rounded-3xl bg-white/2" />
         </aside>
       </div>
     </div>
@@ -147,6 +147,8 @@ function HighlightsPreview() {
             title={it.title}
             summary={it.summary}
             tags={it.tags}
+            to={`/paper/${it.id}`}
+            ctaLabel="Overview"
             // no img for research
             // ctaLabel="Details at Research Space"
             // no `to` (hover-only)
@@ -179,7 +181,7 @@ function TrailCounter() {
             tags={it.tags}
             img={it.img}
             to={it.to}
-            ctaLabel="VISIT"
+            ctaLabel="Coming Soon!"
           />
         ))}
       </div>
@@ -244,21 +246,6 @@ function FeedbackPanel() {
 
 /* -------------------- Primitives -------------------- */
 
-function Surface({ className = "", children }) {
-  return (
-    <div
-      className={[
-        "rounded-3xl bg-black/30 backdrop-blur",
-        "transition duration-200",
-        "hover:shadow-[0_0_0_1px_rgba(255,255,255,0.06),0_10px_40px_rgba(255,255,255,0.06)]",
-        "hover:bg-black/35",
-        className
-      ].join(" ")}
-    >
-      {children}
-    </div>
-  );
-}
 
 function ActionLink({ to, children, subtle = false }) {
   return (
@@ -273,19 +260,5 @@ function ActionLink({ to, children, subtle = false }) {
     >
       {children}
     </Link>
-  );
-}
-
-function SocialDot({ label }) {
-  return (
-    <button
-      type="button"
-      onClick={() => console.log(label)}
-      className="group inline-flex items-center gap-2"
-      aria-label={label}
-    >
-      <span className="h-10 w-10 rounded-full bg-white/5 transition group-hover:shadow-[0_0_0_1px_rgba(255,255,255,0.08),0_10px_30px_rgba(255,255,255,0.08)]" />
-      <span className="text-xs text-white/50 group-hover:text-white/70">{label}</span>
-    </button>
   );
 }

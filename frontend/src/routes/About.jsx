@@ -225,10 +225,11 @@ export default function About() {
         </Card>
 
         {/* Added ID here for the link to scroll to */}
-        <header id="contact" className="space-y-2 scroll-mt-24">
+        <header id="contact" className="flex space-y-2 scroll-mt-24">
           <h1 className="text-3xl font-semibold tracking-tight text-white">
             Contact
           </h1>
+          
         </header>
 
         {/* CONTACT */}
@@ -239,7 +240,7 @@ export default function About() {
                 You can use this form if you’re working on related projects, stuck on a systems / cognition / learning problem, or just want a perspective on something in this space—whether it’s feedback, questions, collaborations, or simply to send a note.
               </h2>
             </div>
-            <Tag className="bg-white/5 text-white/80">📝</Tag>
+            
           </div>
 
           <form onSubmit={handleSubmit} className="mt-6 grid gap-4">

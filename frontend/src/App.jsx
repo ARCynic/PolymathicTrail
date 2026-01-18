@@ -1,6 +1,7 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import WorkStatus from "./routes/WorkStatus.jsx";
+import Paper from "./routes/Paper.jsx";
 
 import Layout from "./components/Layout/layout.jsx";
 
@@ -19,7 +20,7 @@ export default function App() {
         <Route path="/about" element={<About />} />
 
         <Route path="/work/:kind/:slug" element={<WorkStatus />} />
-
+        <Route path="/paper/:id" element={<Paper />} />
 
       </Route>
 
