@@ -22,7 +22,7 @@ export default function Navbar() {
 
       // Examples: switch these to real external URLs when ready
       { label: "Research Space", href: "" },
-      { label: "Cognitive Forest", href: "" },
+      { label: "Cognitive Forest", href: "https://cogforest.polymathictrail.space" },
       { label: "Learning Hub", href: "" },
       { label: "Simulation Sea", href: "" },
 
@@ -96,32 +96,45 @@ useEffect(() => {
           </div>
 
           {/* Mobile button */}
-          <button
-            className={cx(
-              "md:hidden inline-flex items-center justify-center",
-              "h-16 w-16 rounded-2xl",
-              styles.shell,
-              "transition hover:bg-black/70 hover:ring-white/20"
-            )}
-            onClick={() => setMobileOpen((v) => !v)}
-            aria-label="Toggle menu"
-            aria-expanded={mobileOpen}
-          >
-            <div className="flex flex-col gap-[6px]">
-              <span
-                className="h-[2px] w-6 rounded bg-white transition"
-                style={mobileOpen ? { transform: "translateY(8px) rotate(45deg)" } : undefined}
-              />
-              <span
-                className="h-[2px] w-6 rounded bg-white transition"
-                style={mobileOpen ? { opacity: 0 } : undefined}
-              />
-              <span
-                className="h-[2px] w-6 rounded bg-white transition"
-                style={mobileOpen ? { transform: "translateY(-8px) rotate(-45deg)" } : undefined}
-              />
-            </div>
-          </button>
+          {/* Mobile button */}
+            <button
+              className={cx(
+                "md:hidden inline-flex items-center justify-center",
+                "p-2", // no fixed box size
+                "bg-transparent ring-0 shadow-none", // no box
+                "transition"
+              )}
+              onClick={() => setMobileOpen((v) => !v)}
+              aria-label="Toggle menu"
+              aria-expanded={mobileOpen}
+            >
+              <div className="flex flex-col gap-[7px]">
+                <span
+                  className={cx(
+                    "h-[3px] w-8 rounded-full transition", // thicker + wider
+                    "bg-cyan-200/95",
+                    "shadow-[0_0_10px_rgba(34,211,238,0.55),0_0_22px_rgba(34,211,238,0.20)]"
+                  )}
+                  style={mobileOpen ? { transform: "translateY(10px) rotate(45deg)" } : undefined}
+                />
+                <span
+                  className={cx(
+                    "h-[3px] w-8 rounded-full transition",
+                    "bg-cyan-200/95",
+                    "shadow-[0_0_10px_rgba(34,211,238,0.55),0_0_22px_rgba(34,211,238,0.20)]"
+                  )}
+                  style={mobileOpen ? { opacity: 0 } : undefined}
+                />
+                <span
+                  className={cx(
+                    "h-[3px] w-8 rounded-full transition",
+                    "bg-cyan-200/95",
+                    "shadow-[0_0_10px_rgba(34,211,238,0.55),0_0_22px_rgba(34,211,238,0.20)]"
+                  )}
+                  style={mobileOpen ? { transform: "translateY(-10px) rotate(-45deg)" } : undefined}
+                />
+              </div>
+            </button>
         </nav>
 
         {/* Mobile popover */}

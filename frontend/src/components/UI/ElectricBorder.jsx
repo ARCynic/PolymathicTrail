@@ -135,7 +135,7 @@ const ElectricBorder = ({ children, color = '#a205d1ff', speed = 1, chaos = 1, t
         aria-hidden
         focusable="false"
       >
-        <defs>
+        {/* <defs>
           <filter id={filterId} colorInterpolationFilters="sRGB" x="-20%" y="-20%" width="140%" height="140%">
             <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise1" seed="1" />
             <feOffset in="noise1" dx="0" dy="0" result="offsetNoise1">
@@ -168,7 +168,7 @@ const ElectricBorder = ({ children, color = '#a205d1ff', speed = 1, chaos = 1, t
               yChannelSelector="B"
             />
           </filter>
-        </defs>
+        </defs> */}
       </svg>
 
       <div className="absolute inset-0 pointer-events-none" style={inheritRadius}>

@@ -2,6 +2,8 @@ import React, { useEffect, useMemo } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import Card from "../components/UI/Card.jsx";
 import { RESEARCH_SNEAKPEEK } from "../data/sneakpeek.js";
+import Navbar from "../components/Layout/Navbar.jsx";
+import Footer from "../components/Layout/Footer.jsx";
 
 export default function Paper() {
   const navigate = useNavigate();
@@ -24,6 +26,7 @@ export default function Paper() {
 
   return (
     <div className="relative min-h-screen">
+      <Navbar/>
       {/* Page heading */}
       <div className="mx-auto max-w-6xl px-4 sm:px-6 pt-3 sm:pt-3">
         <h1 className="text-3xl sm:text-4xl font-semibold text-white/90">
@@ -32,13 +35,21 @@ export default function Paper() {
         <p className="mt-2 text-sm sm:text-base text-white/55">
           Research Space · Polymathic Trail
         </p>
-        
+        <div className="mt-0 flex justify-end">
+            <button 
+              type="button"
+              onClick={onClose}
+              className="shrink-0 rounded-xl bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] text-white/80 hover:bg-white/12 hover:text-white ring-2 ring-white/10 hover:ring-white/60 transition"
+              aria-label="Close"
+            >
+              Close
+            </button></div>
       </div>
       
 
       {/* Main panel */}
       <div className="mx-auto max-w-6xl px-4 sm:px-6 pb-16 pt-6">
-        <Card className="p-0" borderColor="rgba(0,229,255,0.55)">
+        <Card className="p-0" borderColor="#00e5ffe7">
           <div className="flex items-start justify-between gap-4 p-5 sm:p-6 border-b border-white/10">
             <div className="min-w-0">
               {item?.summary ? (
@@ -59,14 +70,7 @@ export default function Paper() {
               ) : null}
             </div>
 
-            <button
-              type="button"
-              onClick={onClose}
-              className="shrink-0 rounded-xl bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] text-white/80 hover:bg-white/12 hover:text-white ring-2 ring-white/10 hover:ring-white/60 transition"
-              aria-label="Close"
-            >
-              Close
-            </button>
+            
           </div>
 
           <div className="p-5 sm:p-6">
@@ -104,6 +108,7 @@ export default function Paper() {
             </button></div>
         
       </div>
+      <Footer />
     </div>
   );
 }

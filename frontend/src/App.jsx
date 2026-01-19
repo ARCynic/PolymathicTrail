@@ -1,30 +1,20 @@
 import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import WorkStatus from "./routes/WorkStatus.jsx";
 import Paper from "./routes/Paper.jsx";
-
-import Layout from "./components/Layout/layout.jsx";
-
-import Home from "./routes/Home.jsx";
+import Home2 from "./routes/Home2.jsx";
+// import Home from "./routes/Home.jsx";
 import About from "./routes/About.jsx";
+
 export default function App() {
   return (
     <Routes>
+      <Route path="/" element={<Home2 />} />
+{/* <Route path="/home2" element={<Home />} /> */}
+      <Route path="/about" element={<About />} />
+      <Route path="/work/:kind/:slug" element={<WorkStatus />} />
+      <Route path="/paper/:id" element={<Paper />} />
 
-
-
-    
-      {/* Global layout routes */}
-      <Route element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="/about" element={<About />} />
-
-        <Route path="/work/:kind/:slug" element={<WorkStatus />} />
-        <Route path="/paper/:id" element={<Paper />} />
-
-      </Route>
-
-      {/* ✅ put NotFound at top-level */}
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
