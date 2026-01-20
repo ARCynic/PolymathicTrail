@@ -250,32 +250,7 @@ It steers.`
 
 /** @type {SneakpeekItem[]} */
 export const CREATIVE_SNEAKPEEK = [
-  {
-    id: "c_simsea_arcade",
-    variant: "image",
-    title: "Simulation Sea",
-    summary:
-      "Small simulations and assessments—designed as calm interfaces with strange edges.",
-    tags: ["games", "simulation", "web"],
-    img: logos,
-    height: 760,
-    href: "", // optional: only if you want click navigation later
-    glare: "ice",
-  },
-  {
-    id: "c_journey_chords",
-    variant: "image",
-    title: "Journey Chords",
-    summary:
-      "A tour planner for bands—routing, costs, constraints, and sanity checks without the noise.",
-    tags: ["product", "planning", "tools"],
-    img: log,
-    href: "",
-    height: 700,
-    glare: "soft",
-  },
-
-  {
+      {
     id: "c_cognitive_forest",
     variant: "image",
     title: "Cognitive Forest",
@@ -287,12 +262,39 @@ export const CREATIVE_SNEAKPEEK = [
     height: 680,
     glare: "soft",
   },
+  {
+    id: "c_simsea_arcade",
+    variant: "image",
+    title: "Simulation Sea",
+    summary:
+      "Simulation Sea is a marine-themed platform for psychometric and cognitive assessments, plus retro arcade simulations enhanced with LLM-driven interaction.",
+    tags: ["games", "simulation", "web"],
+    img: logos,
+    height: 760,
+    href: "", // optional: only if you want click navigation later
+    glare: "ice",
+  },
+
+  // {
+  //   id: "c_journey_chords",
+  //   variant: "image",
+  //   title: "Journey Chords",
+  //   summary:
+  //     "A tour planner for bands—routing, costs, constraints, and sanity checks without the noise.",
+  //   tags: ["product", "planning", "tools"],
+  //   img: log,
+  //   href: "",
+  //   height: 700,
+  //   glare: "soft",
+  // },
+
+
     {
     id: "c_sirius_pokerbot",
     variant: "image",
     title: "Sirius PokerBot",
     summary:
-      "Decision logic + table dynamics—an experiment in strategy, uncertainty, and readable reasoning.",
+      "Designing a poker agent combining Counterfactual Regret Minimization (CFR+) with DELS.",
     tags: ["ai", "game", "strategy"],
     img: poker,
     to: "/project/sirius_pokerbot",
