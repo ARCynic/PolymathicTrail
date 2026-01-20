@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo, useState } from "react";
 
 import Navbar from "../components/Layout/Navbar.jsx";
 import Footer from "../components/Layout/Footer.jsx";
@@ -73,6 +73,67 @@ function TextareaBase({ className = "", ...props }) {
 }
 
 export default function About() {
+  // --- Contact form backend-ready setup (same as CogForest) ---
+  const [topic, setTopic] = useState("Feedback");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [msg, setMsg] = useState("");
+
+  const SUBMISSIONS_ENABLED = false;
+
+  const API_BASE = import.meta.env.VITE_API_BASE || "https://api.mydomain.tld";
+  const CONTACT_ENDPOINT = `${API_BASE.replace(/\/$/, "")}/contact`;
+
+  const [status, setStatus] = useState("idle"); // idle | submitting | success | error
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const tooShort = msg.trim().length > 0 && msg.trim().length < 10;
+
+  const mailtoHref = useMemo(() => {
+    const subject = encodeURIComponent(`[Polymathic Trail] ${topic}`);
+    const body = encodeURIComponent(
+      `Topic: ${topic}\nName: ${name || "(not provided)"}\nEmail: ${
+        email || "(not provided)"
+      }\n\nMessage:\n${msg || "(empty)"}\n`
+    );
+    return `mailto:contact@polymathictrail.org?subject=${subject}&body=${body}`;
+  }, [topic, name, email, msg]);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    if (!SUBMISSIONS_ENABLED) return;
+
+    setStatus("submitting");
+    setErrorMsg("");
+
+    try {
+      const payload = {
+        email: email || "",
+        name: name || "",
+        subject: topic,
+        message: msg || "",
+      };
+
+      const res = await fetch(CONTACT_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        const txt = await res.text().catch(() => "");
+        throw new Error(txt || `Request failed (${res.status})`);
+      }
+
+      setStatus("success");
+    } catch (err) {
+      setStatus("error");
+      setErrorMsg(err?.message || "Something went wrong.");
+    }
+  }
+  // -----------------------------------------------------------
+
   return (
     <div className="relative min-h-screen text-white">
       {/* Background */}
@@ -290,11 +351,11 @@ export default function About() {
                 questions, collaborations, or simply to send a note.
               </p>
 
-              <div className="mt-7 grid gap-5">
+              <form onSubmit={handleSubmit} className="mt-7 grid gap-5">
                 <div className="grid gap-4 md:grid-cols-2">
                   <div className="grid gap-2">
                     <FieldLabel>Topic</FieldLabel>
-                    <SelectBase defaultValue="Feedback">
+                    <SelectBase value={topic} onChange={(e) => setTopic(e.target.value)}>
                       <option>Feedback</option>
                       <option>Question</option>
                       <option>Collaboration</option>
@@ -304,13 +365,22 @@ export default function About() {
 
                   <div className="grid gap-2">
                     <FieldLabel>Name</FieldLabel>
-                    <InputBase placeholder="Optional" />
+                    <InputBase
+                      placeholder="Optional"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                    />
                   </div>
                 </div>
 
                 <div className="grid gap-2">
                   <FieldLabel>Email</FieldLabel>
-                  <InputBase placeholder="Optional (so I can reply)" type="email" />
+                  <InputBase
+                    placeholder="Optional (so I can reply)"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
                 </div>
 
                 <div className="grid gap-2">
@@ -318,20 +388,34 @@ export default function About() {
                   <TextareaBase
                     placeholder="Write your message..."
                     rows={7}
+                    value={msg}
+                    onChange={(e) => setMsg(e.target.value)}
                   />
-                  <div className="text-xs text-white/35">(Minimum 10 characters.)</div>
+                  <div className="text-xs text-white/35">
+                    (Minimum 10 characters.)
+                    {tooShort ? <span className="ml-2 text-rose-300/80">Too short.</span> : null}
+                  </div>
                 </div>
 
                 <div className="flex items-center justify-between gap-4 pt-2">
                   <div className="text-xs text-white/40">
-                    Submission is currently disabled.
+                    Submission via form is currently disabled. Please hit "Email instead" to contact for the time being.
+                    {status === "error" ? (
+                      <span className="ml-2 text-rose-300/90">{errorMsg}</span>
+                    ) : null}
                   </div>
 
-                  <Button variant="secondary" disabled className="rounded-xl px-6">
-                    Send
-                  </Button>
+                  <div className="flex items-center gap-3">
+                    <Button variant="secondary" href={mailtoHref} className="rounded-xl px-6">
+                      Email instead
+                    </Button>
+
+                    <Button variant="secondary" disabled className="rounded-xl px-6">
+                      {status === "submitting" ? "Sending…" : "Send"}
+                    </Button>
+                  </div>
                 </div>
-              </div>
+              </form>
             </div>
           </Panel>
         </div>

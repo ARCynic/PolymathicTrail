@@ -83,7 +83,7 @@ useEffect(() => {
           </div>
 
           {/* RIGHT: desktop pills */}
-          <div className="hidden md:flex items-center">
+          <div className="hidden lg:flex items-center">
             <div className={cx("flex items-center rounded-full p-1", styles.shell)}>
               <ul className="flex items-stretch gap-1">
                 {items.map((item) => (
@@ -99,7 +99,7 @@ useEffect(() => {
           {/* Mobile button */}
             <button
               className={cx(
-                "md:hidden inline-flex items-center justify-center",
+                "lg:hidden inline-flex items-center justify-center",
                 "p-2", // no fixed box size
                 "bg-transparent ring-0 shadow-none", // no box
                 "transition"
@@ -139,7 +139,7 @@ useEffect(() => {
 
         {/* Mobile popover */}
         {mobileOpen ? (
-  <div className="md:hidden mx-auto mt-3 max-w-6xl px-4 sm:px-6">
+  <div className="lg:hidden mx-auto mt-3 max-w-6xl px-4 sm:px-6">
     <div className="rounded-3xl p-2 bg-black/70 ring-1 ring-white/10 backdrop-blur shadow-[0_16px_60px_rgba(0,0,0,0.55)]">
       <ul className="flex flex-col gap-2">
         {items.map((item) => (

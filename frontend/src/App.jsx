@@ -5,7 +5,7 @@ import Paper from "./routes/Paper.jsx";
 import Home2 from "./routes/Home2.jsx";
 // import Home from "./routes/Home.jsx";
 import About from "./routes/About.jsx";
-
+// import LuckBranch from "./routes/LuckBranch.jsx";
 export default function App() {
   return (
     <Routes>
@@ -14,7 +14,7 @@ export default function App() {
       <Route path="/about" element={<About />} />
       <Route path="/work/:kind/:slug" element={<WorkStatus />} />
       <Route path="/paper/:id" element={<Paper />} />
-
+      {/* <Route path="/luck-branch" element={<LuckBranch />} /> */}
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
