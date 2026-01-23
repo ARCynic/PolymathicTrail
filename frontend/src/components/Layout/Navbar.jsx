@@ -76,7 +76,7 @@ useEffect(() => {
                 Polymathic Trail
               </span>
 
-              <span className="mt-2 text-[12px] uppercase tracking-[0.22em] text-cyan-300/75">
+              <span className="mt-2 text-[10px] uppercase tracking-[0.22em] text-cyan-300/75">
                 Research · Learning · Art & Music
               </span>
             </div>

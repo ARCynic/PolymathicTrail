@@ -1,6 +1,5 @@
 import logo2 from "../assets/logo_forest.png";
 import logos from "../assets/logo_simsea.png";
-import log from "../assets/loooo.png"
 import poker from "../assets/poker01.png"
 import satire from "../assets/stamp_satire.png"
 /**

@@ -3,13 +3,21 @@ import { Link } from "react-router-dom";
 
 const cx = (...c) => c.filter(Boolean).join(" ");
 
-// 1. Extracted CTA Component
+// 1. CardCta: Handles the actual clickable link logic
 const CardCta = ({ ctaLabel, linkKind, to, href }) => {
   if (!(typeof ctaLabel === "string" && ctaLabel.trim().length > 0))
     return null;
 
   const baseClasses =
-    "inline-flex items-center justify-center rounded-xl bg-white/8 px-4 py-2 ring-2 ring-white/10 text-xs font-bold uppercase tracking-[0.22em] text-white/80 hover:bg-white/12 hover:text-white hover:ring-white/60 transition";
+  "inline-flex items-center justify-center rounded-xl px-4 py-2 " +
+  "bg-white/10 text-white/90 ring-1 ring-white/20 " +
+  "shadow-[0_8px_18px_-10px_rgba(0,0,0,0.65)] " +
+  "text-xs font-bold uppercase tracking-[0.22em] " +
+  "cursor-pointer select-none " +
+  "hover:bg-white/14 hover:ring-white/45 hover:shadow-[0_12px_26px_-14px_rgba(34,211,238,0.45)] " +
+  "active:translate-y-[1px] active:bg-white/16 " +
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/60 " +
+  "transition";
 
   if (linkKind === "internal") {
     return (
@@ -33,7 +41,7 @@ const CardCta = ({ ctaLabel, linkKind, to, href }) => {
       className={cx(
         "inline-flex items-center justify-center rounded-xl",
         "bg-white/5 px-4 py-2",
-        "ring-2 ring-white/10",
+        "ring-4 ring-white/10",
         "text-xs font-bold uppercase tracking-[0.22em]",
         "text-white/35"
       )}
@@ -41,23 +49,6 @@ const CardCta = ({ ctaLabel, linkKind, to, href }) => {
       {ctaLabel}
     </span>
   );
-};
-
-// 2. Extracted Wrapper Component
-const CardWrapper = ({ linkKind, to, href, children }) => {
-  if (linkKind === "internal")
-    return (
-      <Link to={to} className="block">
-        {children}
-      </Link>
-    );
-  if (linkKind === "external")
-    return (
-      <a href={href} className="block" rel="noreferrer">
-        {children}
-      </a>
-    );
-  return <>{children}</>;
 };
 
 export default function SneakPeekCard({
@@ -98,111 +89,112 @@ export default function SneakPeekCard({
         className
       )}
     >
-      <CardWrapper linkKind={linkKind} to={to} href={href}>
-        {/* subtle outer glow */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover/sneak:opacity-100"
-          style={{
-            background:
-              "radial-gradient(800px circle at 70% -10%, rgba(34,211,238,0.18), transparent 55%)",
-          }}
-        />
+      {/* Removed CardWrapper. The card itself is no longer a link. 
+          The hover effects on the article above still work visually. */}
+
+      {/* subtle outer glow */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover/sneak:opacity-100"
+        style={{
+          background:
+            "radial-gradient(800px circle at 70% -10%, rgba(34,211,238,0.18), transparent 55%)",
+        }}
+      />
+
+      <div
+        className={cx(
+          "relative grid",
+          hasLeftPane
+            ? "grid-cols-1 md:grid-cols-[1.25fr_0.95fr]"
+            : "grid-cols-1"
+        )}
+      >
+        {hasLeftPane ? (
+          <div className="relative aspect-[16/11] md:aspect-auto md:min-h-[220px]">
+            <div className="absolute inset-0">
+              <img
+                src={img}
+                alt=""
+                draggable={false}
+                className={cx(
+                  "h-full w-full object-contain",
+                  "transition duration-500 ease-out",
+                  "group-hover/sneak:scale-[1.04]"
+                )}
+              />
+            </div>
+
+            <div
+              aria-hidden="true"
+              className={cx(
+                "absolute inset-0 transition-opacity duration-300",
+                "bg-gradient-to-br from-black/70 via-black/30 to-black/20",
+                "opacity-0 group-hover/sneak:opacity-100"
+              )}
+            />
+
+            <div
+              aria-hidden="true"
+              className={cx(
+                "pointer-events-none absolute -inset-24 opacity-0 transition-opacity duration-300",
+                "group-hover/sneak:opacity-100"
+              )}
+              style={{
+                background:
+                  "linear-gradient(120deg, transparent 35%, rgba(255,255,255,0.10) 45%, transparent 55%)",
+                transform: "rotate(8deg)",
+              }}
+            />
+
+            <div
+              className={cx(
+                "absolute inset-x-6 top-1/2 -translate-y-1/2",
+                "text-cyan-200/80 font-semibold tracking-[0.18em] uppercase",
+                "text-[11px] sm:text-xs",
+                "opacity-0 translate-y-2 transition duration-300",
+                "group-hover/sneak:opacity-100 group-hover/sneak:translate-y-0"
+              )}
+            >
+              {overlayText}
+            </div>
+          </div>
+        ) : null}
 
         <div
           className={cx(
-            "relative grid",
+            "relative",
             hasLeftPane
-              ? "grid-cols-1 md:grid-cols-[1.25fr_0.95fr]"
-              : "grid-cols-1"
+              ? "border-t border-white/10 md:border-t-0 md:border-l md:border-white/10"
+              : ""
           )}
         >
-          {hasLeftPane ? (
-            <div className="relative aspect-[16/11] md:aspect-auto md:min-h-[220px]">
-              <div className="absolute inset-0">
-                <img
-                  src={img}
-                  alt=""
-                  draggable={false}
-                  className={cx(
-                    "h-full w-full object-contain",
-                    "transition duration-500 ease-out",
-                    "group-hover/sneak:scale-[1.04]"
-                  )}
-                />
-              </div>
+          <div className="flex h-full flex-col justify-center p-6 sm:p-7">
+            <h3
+              className={cx(
+                "text-2xl sm:text-[24px] font-semibold tracking-tight",
+                "text-white transition-colors duration-300",
+                "group-hover/sneak:text-cyan-200"
+              )}
+            >
+              {title}
+            </h3>
 
-              <div
-                aria-hidden="true"
-                className={cx(
-                  "absolute inset-0 transition-opacity duration-300",
-                  "bg-gradient-to-br from-black/70 via-black/30 to-black/20",
-                  "opacity-0 group-hover/sneak:opacity-100"
-                )}
+            <p className="mt-2 text-sm leading-relaxed text-white/65 max-w-prose">
+              {summary}
+            </p>
+
+            <div className="mt-3">
+              <CardCta
+                ctaLabel={ctaLabel}
+                linkKind={linkKind}
+                to={to}
+                href={href}
               />
-
-              <div
-                aria-hidden="true"
-                className={cx(
-                  "pointer-events-none absolute -inset-24 opacity-0 transition-opacity duration-300",
-                  "group-hover/sneak:opacity-100"
-                )}
-                style={{
-                  background:
-                    "linear-gradient(120deg, transparent 35%, rgba(255,255,255,0.10) 45%, transparent 55%)",
-                  transform: "rotate(8deg)",
-                }}
-              />
-
-              <div
-                className={cx(
-                  "absolute inset-x-6 top-1/2 -translate-y-1/2",
-                  "text-cyan-200/80 font-semibold tracking-[0.18em] uppercase",
-                  "text-[11px] sm:text-xs",
-                  "opacity-0 translate-y-2 transition duration-300",
-                  "group-hover/sneak:opacity-100 group-hover/sneak:translate-y-0"
-                )}
-              >
-                {overlayText}
-              </div>
-            </div>
-          ) : null}
-
-          <div
-            className={cx(
-              "relative",
-              hasLeftPane
-                ? "border-t border-white/10 md:border-t-0 md:border-l md:border-white/10"
-                : ""
-            )}
-          >
-            <div className="flex h-full flex-col justify-center p-6 sm:p-7">
-              <h3
-                className={cx(
-                  "text-2xl sm:text-[24px] font-semibold tracking-tight",
-                  "text-white transition-colors duration-300",
-                  "group-hover/sneak:text-cyan-200"
-                )}
-              >
-                {title}
-              </h3>
-
-              <p className="mt-2 text-sm leading-relaxed text-white/65 max-w-prose">
-                {summary}
-              </p>
-
-              <div className="mt-3">
-                <CardCta
-                  ctaLabel={ctaLabel}
-                  linkKind={linkKind}
-                  to={to}
-                  href={href}
-                />
-              </div>
             </div>
           </div>
         </div>
-      </CardWrapper>
+      </div>
     </article>
   );
 }
