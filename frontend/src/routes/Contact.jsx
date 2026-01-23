@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import BlurText from "../components/home/BlurText";
 import Navbar from "../components/Layout/Navbar";
 import Footer from "../components/Layout/Footer";
-import LiquidChrome from "../components/effects/LiquidChrome";
+import Threads from "../components/effects/Threads";
 const cx = (...c) => c.filter(Boolean).join(" ");
 
 export default function Contact() {
@@ -53,50 +53,79 @@ export default function Contact() {
   }
 
   if (status === "success") {
-  return (
-    <div className="mx-auto w-full max-w-5xl px-2 sm:px-0 min-h-[calc(100svh-17rem)] flex items-center">
-      <section className="w-full">
-        <div
-          className={cx(
-            "rounded-3xl p-6 sm:p-8",
-            "bg-black/45 backdrop-blur-md ring-1 ring-white/10",
-            "transition",
-            "hover:ring-emerald-200/30",
-            "hover:shadow-[0_0_0_1px_rgba(52,211,153,0.18),0_18px_60px_rgba(16,185,129,0.10)]",
-            "text-center"
-          )}
-        >
-          <div className="flex justify-center">
-          <BlurText
-            text="Message received!"
-            delay={120}
-            animateBy="words"
-            direction="top"
-            className="text-2xl font-semibold tracking-tight text-white"
-          />
-          </div>
-          <p className="mt-3 text-sm sm:text-base leading-relaxed text-white/70">
-            Thanks — I’ll read it soon.
-          </p>
-
-          <div className="mt-5 flex justify-center">
-            <a
-              href="/"
-              className={cx(
-                "inline-flex items-center justify-center rounded-xl px-5 py-3",
-                "text-sm font-bold uppercase tracking-[0.10em]",
-                "bg-gradient-to-r from-cyan-300 to-emerald-300 text-black",
-                "ring-1 ring-emerald-200/40",
-                "transition hover:brightness-110"
-              )}
-            >
-              Back to home
-            </a>
-          </div>
-        </div>
-      </section>
+return (
+  <div className="relative min-h-screen text-white flex flex-col">
+    {/* Background */}
+    <div className="fixed inset-0 -z-20">
+      <Threads
+        color={[0.2, 1.0, 0.9]}
+        amplitude={4.2}
+        distance={0.2}
+        enableMouseInteraction={false}
+      />
     </div>
-  );
+
+    {/* Vignette / contrast overlay */}
+    <div
+      className="pointer-events-none fixed inset-0 -z-10"
+      style={{
+        background:
+          "radial-gradient(1200px circle at 20% -10%, rgba(34,211,238,0.10), transparent 55%), radial-gradient(900px circle at 90% 10%, rgba(124,92,255,0.10), transparent 60%), linear-gradient(to bottom, rgba(0,0,0,0.60), rgba(0,0,0,0.75))",
+      }}
+    />
+
+    <Navbar />
+
+    {/* Main grows to push footer down */}
+    <main className="relative z-10 flex-1 flex items-center">
+      <div className="mx-auto w-full max-w-5xl px-2 sm:px-0">
+        <section className="w-full">
+          <div
+            className={cx(
+              "rounded-3xl p-6 sm:p-8",
+              "bg-black/45 backdrop-blur-md ring-1 ring-white/10",
+              "transition",
+              "hover:ring-emerald-200/30",
+              "hover:shadow-[0_0_0_1px_rgba(52,211,153,0.18),0_18px_60px_rgba(16,185,129,0.10)]",
+              "text-center"
+            )}
+          >
+            <div className="flex justify-center">
+              <BlurText
+                text="Message received!"
+                delay={120}
+                animateBy="words"
+                direction="top"
+                className="text-2xl font-semibold tracking-tight text-white"
+              />
+            </div>
+
+            <p className="mt-3 text-sm sm:text-base leading-relaxed text-white/70">
+              Thanks — Your message reached the inbox!
+            </p>
+
+            <div className="mt-5 flex justify-center">
+              <a
+                href="/"
+                className={cx(
+                  "inline-flex items-center justify-center rounded-xl px-5 py-3",
+                  "text-sm font-bold uppercase tracking-[0.10em]",
+                  "bg-gradient-to-r from-cyan-300 to-emerald-300 text-black",
+                  "ring-1 ring-emerald-200/40",
+                  "transition hover:brightness-110"
+                )}
+              >
+                Back to home
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <Footer />
+  </div>
+);
 }
 
  const sendDisabled = status === "submitting" || tooShort || msg.trim().length === 0;
@@ -106,15 +135,12 @@ export default function Contact() {
         <div className="relative min-h-screen text-white">
           {/* Background */}
           <div className="fixed inset-0 -z-20">
-            <LiquidChrome
-              baseColor={[0.0, 0.01, 0.01]}
-              speed={0.1}
-              amplitude={0.3}
-              frequencyX={3}
-              frequencyY={2}
-              interactive={false}
-              className="h-full w-full"
-            />
+            <Threads
+  color={[0.2, 1.0, 0.9]}   // cyan/green tint; adjust later
+  amplitude={4.2}
+  distance={0.2}
+  enableMouseInteraction={false}
+/>
           </div>
     
           {/* Vignette / contrast overlay */}
@@ -133,7 +159,7 @@ export default function Contact() {
             <div className="mx-auto w-full max-w-5xl px-2 sm:px-0">
         
       {/* Page header card */}
-      <section className="mt-2">
+      <section id="contact-form" className="mt-2 scroll-mt-24">
         <div
           className={cx(
             "rounded-3xl p-6 sm:p-8",

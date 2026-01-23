@@ -2,10 +2,55 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+
+    <!-- Responsive -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Personal portfolio: projects, articles, and experiments." />
-    <title>Polymathic Trail</title>
-    <link rel="icon" type="image/png" href="./src/assets/logo.png" />
+
+    <!-- Title + Description -->
+    <title>Polymathic Trail — research, learning, art & music</title>
+    <meta
+      name="description"
+      content="Polymathic Trail is ARCynic’s personal hub: projects, essays, experiments, and evolving notes across systems, learning, art, and music."
+    />
+
+    <!-- Indexing -->
+    <meta name="robots" content="index, nofollow" />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <!-- Theme -->
+    <meta name="theme-color" content="#061012" />
+    <meta name="color-scheme" content="dark" />
+
+    <!-- Canonical (replace with your real URL) -->
+    <link rel="canonical" href="https://polymathictrail.space/" />
+
+    <!-- Favicon (move to /public for Vite; keep as-is if you’re already serving it there) -->
+    <!-- <link rel="icon" type="image/png" href="/favicon-32.png" /> -->
+    <!-- <link rel="icon" href="/favicon.ico" /> -->
+
+    <!-- PWA manifest (optional) -->
+    <!-- <link rel="manifest" href="/site.webmanifest" /> -->
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Polymathic Trail" />
+    <meta property="og:title" content="Polymathic Trail" />
+    <meta
+      property="og:description"
+      content="Projects, essays, experiments, and notes by ARCynic across systems, learning, art, and music."
+    />
+    <meta property="og:url" content="https://polymathictrail.space/" />
+    <!-- <meta property="og:image" content="https://polymathictrail.space/og.jpg" /> -->
+    <!-- <meta property="og:image:width" content="1200" /> -->
+    <!-- <meta property="og:image:height" content="630" /> -->
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Polymathic Trail" />
+    <meta
+      name="twitter:description"
+      content="Projects, essays, experiments, and notes by ARCynic across systems, learning, art, and music."
+    />
+    <!-- <meta name="twitter:image" content="https://polymathictrail.space/og.jpg" /> -->
 
     <!-- Optional: clean, modern font (Inter). Remove if you want system font only. -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -15,6 +60,7 @@
       rel="stylesheet"
     />
   </head>
+
   <body class="bg-zinc-950 text-zinc-100">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>

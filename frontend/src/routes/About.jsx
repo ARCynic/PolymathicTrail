@@ -3,8 +3,8 @@ import React from "react";
 import Navbar from "../components/Layout/Navbar.jsx";
 import Footer from "../components/Layout/Footer.jsx";
 
-import { LiquidChrome } from "../components/effects/LiquidChrome.jsx";
 import ElectricBorder from "../components/UI/ElectricBorder.jsx";
+import Threads from "../components/effects/Threads.jsx";
 import Tag from "../components/UI/Tag.jsx";
 
 const cx = (...c) => c.filter(Boolean).join(" ");
@@ -18,7 +18,7 @@ function Panel({ children, className = "" }) {
       thickness={0.9}
       className={cx("rounded-[28px]", className)}
     >
-      <div className="rounded-[28px] bg-black/40 backdrop-blur-md ring-1 ring-white/10">
+      <div className="rounded-[28px] bg-black/30 backdrop-blur-sm ring-1 ring-white/10">
         {children}
       </div>
     </ElectricBorder>
@@ -30,15 +30,12 @@ export default function About() {
     <div className="relative min-h-screen text-white">
       {/* Background */}
       <div className="fixed inset-0 -z-20">
-        <LiquidChrome
-          baseColor={[0.0, 0.01, 0.01]}
-          speed={0.1}
-          amplitude={0.3}
-          frequencyX={3}
-          frequencyY={2}
-          interactive={false}
-          className="h-full w-full"
-        />
+        <Threads
+  color={[0.2, 1.0, 0.9]}   // cyan/green tint; adjust later
+  amplitude={4.2}
+  distance={0.2}
+  enableMouseInteraction={false}
+/>
       </div>
 
       {/* Contrast overlay */}

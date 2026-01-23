@@ -2,8 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 
 import Navbar from "../components/Layout/Navbar.jsx";
 import Footer from "../components/Layout/Footer.jsx";
-
-import { LiquidChrome } from "../components/effects/LiquidChrome.jsx";
+import Threads from "../components/effects/Threads.jsx";
 import ElectricBorder from "../components/UI/ElectricBorder.jsx";
 import Card from "../components/UI/Card.jsx";
 import Button from "../components/UI/Button.jsx";
@@ -24,7 +23,7 @@ function Panel({ children, className = "" }) {
       thickness={0.9}
       className={cx("rounded-[28px]", className)}
     >
-      <div className="rounded-[28px] bg-black/40 backdrop-blur-md ring-1 ring-white/10">
+      <div className="rounded-[28px] bg-black/30 backdrop-blur-sm ring-2 ring-white/10">
         {children}
       </div>
     </ElectricBorder>
@@ -67,15 +66,12 @@ export default function Home2() {
     <div className="relative min-h-screen text-white">
       {/* Background */}
       <div className="fixed inset-0 -z-20">
-        <LiquidChrome
-          baseColor={[0.0, 0.01, 0.01]}
-          speed={0.1}
-          amplitude={0.3}
-          frequencyX={3}
-          frequencyY={2}
-          interactive={false}
-          className="h-full w-full"
-        />
+        <Threads
+  color={[0.2, 1.0, 0.9]}   // cyan/green tint; adjust later
+  amplitude={4.2}
+  distance={0.2}
+  enableMouseInteraction={false}
+/>
       </div>
 
       {/* Vignette / contrast overlay */}
@@ -203,7 +199,7 @@ export default function Home2() {
                   </p>
 
                   <div className="mt-5">
-                    <Button variant="secondary" to="/about#contact" className="rounded-xl">
+                    <Button variant="secondary" to="/contact" className="rounded-xl">
                       Go to contact form
                     </Button>
                   </div>
@@ -218,7 +214,7 @@ export default function Home2() {
 
                   <div className="mt-5">
                     <Button variant="secondary" href="" className="rounded-xl">
-                      Explore collaborations
+                      Coming Soon!
                     </Button>
                   </div>
                 </Card>
