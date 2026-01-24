@@ -8,7 +8,7 @@ import Threads from "../components/effects/Threads.jsx";
 import Tag from "../components/UI/Tag.jsx";
 
 const cx = (...c) => c.filter(Boolean).join(" ");
-
+const THREADS_COLOR = [0.2, 1.0, 0.9];
 function Panel({ children, className = "" }) {
   return (
     <ElectricBorder
@@ -31,7 +31,7 @@ export default function About() {
       {/* Background */}
       <div className="fixed inset-0 -z-20">
         <Threads
-  color={[0.2, 1.0, 0.9]}   // cyan/green tint; adjust later
+  color={THREADS_COLOR}   // cyan/green tint; adjust later
   amplitude={4.2}
   distance={0.2}
   enableMouseInteraction={false}

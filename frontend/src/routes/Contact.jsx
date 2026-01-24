@@ -4,7 +4,7 @@ import Navbar from "../components/Layout/Navbar";
 import Footer from "../components/Layout/Footer";
 import Threads from "../components/effects/Threads";
 const cx = (...c) => c.filter(Boolean).join(" ");
-
+const THREADS_COLOR = [0.2, 1.0, 0.9];
 export default function Contact() {
   const [topic, setTopic] = useState("Feedback");
   const [name, setName] = useState("");
@@ -58,7 +58,7 @@ return (
     {/* Background */}
     <div className="fixed inset-0 -z-20">
       <Threads
-        color={[0.2, 1.0, 0.9]}
+        color={THREADS_COLOR}
         amplitude={4.2}
         distance={0.2}
         enableMouseInteraction={false}

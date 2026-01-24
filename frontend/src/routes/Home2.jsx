@@ -13,7 +13,7 @@ import { QUOTES } from "../data/quotes.js";
 import { RESEARCH_SNEAKPEEK, CREATIVE_SNEAKPEEK } from "../data/sneakpeek.js";
 
 const cx = (...c) => c.filter(Boolean).join(" ");
-
+const THREADS_COLOR = [0.2, 1.0, 0.9];
 function Panel({ children, className = "" }) {
   return (
     <ElectricBorder
@@ -67,7 +67,7 @@ export default function Home2() {
       {/* Background */}
       <div className="fixed inset-0 -z-20">
         <Threads
-  color={[0.2, 1.0, 0.9]}   // cyan/green tint; adjust later
+  color={THREADS_COLOR}   // cyan/green tint; adjust later
   amplitude={1.2}
   distance={0.2}
   enableMouseInteraction={false}
