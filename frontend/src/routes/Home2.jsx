@@ -68,20 +68,20 @@ export default function Home2() {
       <div className="fixed inset-0 -z-20">
         <Threads
   color={[0.2, 1.0, 0.9]}   // cyan/green tint; adjust later
-  amplitude={4.2}
+  amplitude={1.2}
   distance={0.2}
   enableMouseInteraction={false}
 />
       </div>
 
       {/* Vignette / contrast overlay */}
-      <div
+      {/* <div
         className="pointer-events-none fixed inset-0 -z-10"
         style={{
           background:
             "radial-gradient(1200px circle at 20% -10%, rgba(34,211,238,0.10), transparent 55%), radial-gradient(900px circle at 90% 10%, rgba(124,92,255,0.10), transparent 60%), linear-gradient(to bottom, rgba(0,0,0,0.60), rgba(0,0,0,0.75))",
         }}
-      />
+      /> */}
 
       <Navbar />
 

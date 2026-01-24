@@ -5,12 +5,16 @@ import Paper from "./routes/Paper.jsx";
 import Home2 from "./routes/Home2.jsx";
 // import Home from "./routes/Home.jsx";
 import About from "./routes/About.jsx";
+import ScrollToTop from "./components/Layout/ScrollToTop.jsx";
 // import LuckBranch from "./routes/LuckBranch.jsx";
 import Contact from "./routes/Contact.jsx";
 export default function App() {
   return (
+    <>
+    <ScrollToTop />
     <Routes>
       <Route path="/" element={<Home2 />} />
+      
 {/* <Route path="/home2" element={<Home />} /> */}
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />
@@ -19,6 +23,7 @@ export default function App() {
       {/* <Route path="/luck-branch" element={<LuckBranch />} /> */}
       <Route path="*" element={<NotFound />} />
     </Routes>
+    </>
   );
 }
 

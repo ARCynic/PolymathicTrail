@@ -144,13 +144,13 @@ return (
           </div>
     
           {/* Vignette / contrast overlay */}
-          <div
+          {/* <div
             className="pointer-events-none fixed inset-0 -z-10"
             style={{
               background:
                 "radial-gradient(1200px circle at 20% -10%, rgba(34,211,238,0.10), transparent 55%), radial-gradient(900px circle at 90% 10%, rgba(124,92,255,0.10), transparent 60%), linear-gradient(to bottom, rgba(0,0,0,0.60), rgba(0,0,0,0.75))",
             }}
-          />
+          /> */}
     
           <Navbar />
     
@@ -163,7 +163,7 @@ return (
         <div
           className={cx(
             "rounded-3xl p-6 sm:p-8",
-            "bg-black/45 backdrop-blur-md ring-1 ring-white/10",
+            "bg-black/30 backdrop-blur-md ring-1 ring-white/10",
             "transition",
             "hover:ring-emerald-200/30",
             "hover:shadow-[0_0_0_1px_rgba(52,211,153,0.18),0_18px_60px_rgba(16,185,129,0.10)]"
@@ -180,17 +180,14 @@ return (
           </div>
 
           <p className="mt-3 text-sm sm:text-base leading-relaxed text-white/70 text-center">
-          You can use this form if you’re working on related projects, stuck
-                on a systems / cognition / learning problem, or just want a
-                perspective on something in this space—whether it’s feedback,
-                questions, collaborations, or simply to send a note. Feedback is how people (and projects) get less wrong over time. It can shape what I might do next.
+          Send a note, question, or collaboration idea. Feedback helps ideas get clearer and more accurate over time—and it can shape what I build next.
           </p>
         </div>
       </section>
 
       {/* Form card */}
       <section className="mt-6">
-        <div className="rounded-3xl bg-black/60 ring-1 ring-white/10 p-6 sm:p-8">
+        <div className="rounded-3xl bg-black/30 backdrop-blur-md ring-1 ring-white/10 p-6 sm:p-8">
           <form onSubmit={handleSubmit} className="grid gap-5">
             <div className="grid gap-4 md:grid-cols-2">
               <div className="grid gap-2">
