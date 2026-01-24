@@ -254,7 +254,7 @@ export const CREATIVE_SNEAKPEEK = [
     variant: "image",
     title: "Cognitive Forest",
     summary:
-      "Short writings and small tools about attention, bias, meaning, and modern life.",
+      "Short writings and philosophical fragments about attention, bias, meaning, and modern life.",
     tags: ["Cognition", "Projection", "Paradox"],
     img: logo2,
     href: "https://cogforest.polymathictrail.space",
