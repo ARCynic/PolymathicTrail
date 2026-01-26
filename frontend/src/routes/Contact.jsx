@@ -136,7 +136,7 @@ return (
           {/* Background */}
           <div className="fixed inset-0 -z-20">
             <Threads
-  color={[0.2, 1.0, 0.9]}   // cyan/green tint; adjust later
+  color={THREADS_COLOR}   // cyan/green tint; adjust later
   amplitude={4.2}
   distance={0.2}
   enableMouseInteraction={false}
