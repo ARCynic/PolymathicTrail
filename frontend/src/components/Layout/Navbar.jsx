@@ -22,7 +22,7 @@ export default function Navbar() {
 
       // Examples: switch these to real external URLs when ready
       // { label: "Research Space", href: "" },
-      { label: "Cognitive Forest", href: "https://cogforest.polymathictrail.space" },
+      { label: "Cognitive Forest", href: "https://cogforest.space" },
       // { label: "Learning Hub", href: "" },
       { label: "Simulation Sea", href: "" },
 
